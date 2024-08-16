@@ -118,18 +118,6 @@ export async function createClient(formData: ClientFormData) {
   }
 }
 
-// Función para añadir data de manera masiva. No lo he podido hacer funcionar
-// export async function addClientsMassive() {
-//   try {
-//     await api.post('/clients/massive');
-//     return 'Data Cargada';
-//   } catch (error) {
-//     if(isAxiosError(error) && error.response){
-//       throw new Error(error.response.data.error);
-//     }
-//   }
-// }
-
 export async function deleteClient(id: Client['_id']) {
   try {
     const url = `/clients/${id}`;

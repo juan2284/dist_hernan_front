@@ -9,7 +9,6 @@ import NotFoundView from './views/NotFoundView';
 import RemindersView from './views/clients/RemindersView';
 import ContactClientView from './views/clients/ContactClientView';
 import ContactReportView from './views/clients/ContactReportView';
-// import AddMassiveView from './views/clients/AddMassiveView';
 
 export default function Router() {
   return (
@@ -19,7 +18,6 @@ export default function Router() {
           <Route path='/' element={<HomeView />} index />
           <Route path='/clients' element={<DashboardView />} />
           <Route path='/clients/create' element={<AddClientView />} />
-          {/* <Route path='/clients/massive' element={<AddMassiveView />} /> */}
           <Route path='/clients/reminders' element={<RemindersView />} />
           <Route path='/clients/search' element={<SearchClientView />} />
           <Route path='/clients/reports' element={<ContactReportView />} />
