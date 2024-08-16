@@ -4,7 +4,7 @@ import { Client, ClientFormData, ContactData, contactSchema, dashboardClientSche
 
 export async function getClients() {
   try {
-    const { data } = await api(`/clients`);
+    const { data } = await api(`/api/clients`);
     const response = dashboardClientSchema.safeParse(data);
 
     if (response.success) {
@@ -19,7 +19,7 @@ export async function getClients() {
 
 export async function getReminders() {
   try {
-    const { data } = await api('/clients/reminders');
+    const { data } = await api('/api/clients/reminders');
     const response = remindersSchema.safeParse(data);
 
     if (response.success) {
@@ -34,7 +34,7 @@ export async function getReminders() {
 
 export async function getContacts() {
   try {
-    const { data } = await api('/clients/contacts');
+    const { data } = await api('/api/clients/contacts');
     const response = contactSchema.safeParse(data);
     
     if (response.success) {
@@ -49,7 +49,7 @@ export async function getContacts() {
 
 export async function getClientById(id: Client['_id']) {
   try {
-    const { data } = await api(`/clients/${id}`);
+    const { data } = await api(`/api/clients/${id}`);
     const response = editClientSchema.safeParse(data);
     if (response.success) {
       return response.data;
@@ -63,7 +63,7 @@ export async function getClientById(id: Client['_id']) {
 
 export async function getClientByTelephone(telephone: Client['telephone']) {
   try {
-    const { data } = await api(`/clients/search/${telephone}`);
+    const { data } = await api(`/api/clients/search/${telephone}`);
     const response = dashboardClientSchema.safeParse(data);
     if (response.success) {
       return response.data;
@@ -82,7 +82,7 @@ type ClientAPIType = {
 
 export async function updateClient({formData, clientId}: ClientAPIType) {
   try {
-    const { data } = await api.put<string>(`/clients/${clientId}`, formData);
+    const { data } = await api.put<string>(`/api/clients/${clientId}`, formData);
     return data;
   } catch (error) {
     if(isAxiosError(error) && error.response){
@@ -98,7 +98,7 @@ type ContactAPIType = {
 
 export async function updateContact({formData, clientId}: ContactAPIType) {
   try {
-    const { data } = await api.patch<string>(`/clients/${clientId}/contact`, formData);
+    const { data } = await api.patch<string>(`/api/clients/${clientId}/contact`, formData);
     return data;
   } catch (error) {
     if(isAxiosError(error) && error.response){
@@ -109,7 +109,7 @@ export async function updateContact({formData, clientId}: ContactAPIType) {
 
 export async function createClient(formData: ClientFormData) {
   try {
-    const { data } = await api.post('/clients', formData);
+    const { data } = await api.post('/api/clients', formData);
     return data;
   } catch (error) {
     if(isAxiosError(error) && error.response){
@@ -120,7 +120,7 @@ export async function createClient(formData: ClientFormData) {
 
 export async function deleteClient(id: Client['_id']) {
   try {
-    const url = `/clients/${id}`;
+    const url = `/api/clients/${id}`;
     const { data } = await api.delete<string>(url);
     return data;
   } catch (error) {
